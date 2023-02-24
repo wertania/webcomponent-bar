@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width,initial-scale=1'>
+
+	<title>Svelte app</title>
+
+	<link rel='icon' type='image/png' href='./favicon.png'>
+	<link rel='stylesheet' href='./global.css'>
+	<link rel='stylesheet' href='./build/bundle.css'>
+
+	<script defer src='./build/bundle.js'></script>
+</head>
+
+<body>
+	 <bar-component
+    value="50"
+    tick_layout="center"  
+    tick_interval="10"  
+    tick_max=100
+    tick_min=0
+    width="80" 
+    height="500" 
+    bg_color="#332266"
+    mask_color="green"
+    board_color="#4d4d4d"
+    label_color="black"
+    label_align="bottom" 
+    strokewidth="6"
+    round=1
+    gradient_background=1
+  >
+  </bar-component>
+</body>
+</html>
