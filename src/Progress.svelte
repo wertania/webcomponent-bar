@@ -69,7 +69,6 @@
   export let gradient_background = false;
   export let hide_scale: boolean = false;
 
-  export let scale_interval: number = 10;
   export let strokewidth: number = 4;
   export let decimal_separator = ".";
   export let stroke_color = "#cd4d4d";
