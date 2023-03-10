@@ -270,8 +270,8 @@
           height="{height}px"
           x="{canvasX}px"
           y="{canvasY}px"
-          {rx}
-          {ry}
+          rx={isTrue(round) ? rx : 0}
+          ry={isTrue(round) ? ry : 0}
           stroke={stroke_color}
           fill="url(#{grId})"
           stroke-width={strokewidth}
@@ -281,8 +281,8 @@
           height="{availableHeight(canvasPercHeight)}px"
           x="{canvasPercX}px"
           y="{availableHeight(canvasPercY)}px"
-          rx={availableHeight(rx - strokewidth / 2)}
-          ry={availableHeight(ry - strokewidth / 2)}
+          rx={isTrue(round) ? availableHeight(rx - strokewidth / 2) : 0}
+          ry={isTrue(round) ? availableHeight(ry - strokewidth / 2) : 0}
           fill="url(#{maskId})"
           clip-path="url(#round-corner)"
         />
