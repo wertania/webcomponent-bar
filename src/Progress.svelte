@@ -6,7 +6,11 @@
   import { tweened } from "svelte/motion";
   import { quintOut, cubicOut } from "svelte/easing";
 
-  const formatToDecimalUnit = (value: number): string => {
+  const isTrue = (value: string): string => {
+    return /^true$/i.test(value);
+  }
+
+  const formatToDecimalUnit = (value: number, separator: string): string => {
     let value_str: string = Number(value).toFixed(decimals) || "";
     console.log(Number(value) % 1);
     let formattedString = "";
@@ -15,13 +19,13 @@
         value_str.split(".")[1].length == 2 &&
         value_str.slice(0, -1) != "0"
       ) {
-        formattedString = value_str.replace(".", decimal_separator);
+        formattedString = value_str.replace(".", separator);
       } else {
         formattedString =
-          value_str.split(".")[0] + decimal_separator + value_str.split(".")[1];
+          value_str.split(".")[0] + separator + value_str.split(".")[1];
       }
     } else {
-      formattedString = value_str.replace(".", decimal_separator);
+      formattedString = value_str.replace(".", separator);
     }
 
     return formattedString;
@@ -70,7 +74,8 @@
   export let hide_scale: boolean = false;
 
   export let strokewidth: number = 4;
-  export let decimal_separator = ".";
+  export let label_decimal_separator = ".";
+  export let value_decimal_separator = ".";
   export let stroke_color = "#cd4d4d";
   export let mask_opacity = 50;
   export let decimals = 2;
@@ -194,7 +199,7 @@
 <div class="progress-content" style="font-weight:{font_weight}">
   {#if label_align == "top" || tick_layout == "bottom"}
     <div class="progress-label">
-      {formatToDecimalUnit(displayedNumber) + labelUnit}
+      {formatToDecimalUnit(displayedNumber, label_decimal_separator) + labelUnit}
     </div>
   {/if}
   <div
@@ -294,7 +299,7 @@
             <div class="scale-{tick_layout} scaleleft">
               <span
                 >{formatToDecimalUnit(
-                  index * tick_interval + Number(tick_min)
+                  index * tick_interval + Number(tick_min), value_decimal_separator
                 )}</span
               >
             </div>
@@ -305,7 +310,7 @@
             <div class="scale-{tick_layout} scale">
               <span
                 >{formatToDecimalUnit(
-                  index * tick_interval + Number(tick_min)
+                  index * tick_interval + Number(tick_min), value_decimal_separator
                 )}</span
               >
             </div>
@@ -315,7 +320,7 @@
           {#each Array(count) as _, index (index)}
             <div class="scale-movey {hideScale(index) ? 'hide' : ''}">
               <div class="scale-{tick_layout}">
-                {formatToDecimalUnit(index * tick_interval + Number(tick_min))}
+                {formatToDecimalUnit(index * tick_interval + Number(tick_min), value_decimal_separator)}
               </div>
             </div>
           {/each}
@@ -324,7 +329,7 @@
           {#each Array(count) as _, index (index)}
             <div class="scale-horizontal">
               <div class="scale-{tick_layout}">
-                {formatToDecimalUnit(index * tick_interval + Number(tick_min))}
+                {formatToDecimalUnit(index * tick_interval + Number(tick_min), value_decimal_separator)}
               </div>
             </div>
           {/each}
@@ -333,7 +338,7 @@
           {#each Array(count) as _, index (index)}
             <div class="scale-horizontal-bottom">
               <div class="scale-{tick_layout}">
-                {formatToDecimalUnit(index * tick_interval + Number(tick_min))}
+                {formatToDecimalUnit(index * tick_interval + Number(tick_min), value_decimal_separator)}
               </div>
             </div>
           {/each}
@@ -343,7 +348,7 @@
   </div>
   {#if label_align == "bottom" && tick_layout != "bottom"}
     <div class="progress-label">
-      {formatToDecimalUnit(displayedNumber) + labelUnit}
+      {formatToDecimalUnit(displayedNumber, label_decimal_separator) + labelUnit}
     </div>
   {/if}
 </div>
