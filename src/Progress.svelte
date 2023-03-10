@@ -79,11 +79,11 @@
   export let stroke_color = "#cd4d4d";
   export let mask_opacity = 50;
   export let decimals = 2;
-  export let font_bold = 1;
+  export let font_bold = false;
   export let font_weight: string = "lighter";
   let column_reverse: string = "column-reverse";
 
-  if (font_bold) font_weight = "bold";
+  if (isTrue(font_bold)) font_weight = "bold";
   const labelUnit: string = String.fromCodePoint(8451);
   let onePercValue: number = (tick_max - tick_min) / 100;
   let targetPercentage: number =
