@@ -80,7 +80,11 @@
   export let mask_opacity = 50;
   export let decimals = 2;
   export let font_bold = false;
+  export let font_size_labels = '1.8em';
+  export let font_size_value = '1.2em';
   export let font_weight: string = "lighter";
+
+  export let inner_padding: string = '70px';
   let column_reverse: string = "column-reverse";
 
   if (isTrue(font_bold)) font_weight = "bold";
@@ -127,6 +131,7 @@
     column_reverse = "column";
   }
   onMount(() => {
+    console.log("###", font_size_labels)
     const bbox = pathEl.getBBox();
     canvasWidth = bbox.width;
     canvasHeight = bbox.height;
@@ -196,7 +201,7 @@
   };
 </script>
 
-<div class="progress-content" style="font-weight:{font_weight}">
+<div class="progress-content" style="font-weight:{font_weight}; --font_size_labels: {font_size_labels}; --font_size_value: {font_size_value}; --inner_padding: {inner_padding}">
   {#if label_align == "top" || tick_layout == "bottom"}
     <div class="progress-label">
       {formatToDecimalUnit(displayedNumber, label_decimal_separator) + labelUnit}
@@ -292,7 +297,8 @@
       <div
         class=" interval-label interval-label-{tick_layout}"
         style="--label_color:{label_color}; --height: {labelHeight}px; --offsetY:{strokewidth /
-          2}px; --column_reverse:{column_reverse}; --width:{labelWidth}px"
+          2}px; --column_reverse:{column_reverse}; --width:{labelWidth}px; --font_size_labels: {font_size_labels}; 
+          --font_size_value: {font_size_value}"
       >
         {#if tick_layout == "left"}
           {#each Array(count) as _, index (index)}
@@ -355,7 +361,8 @@
 
 <style>
   .progress-label {
-    font-size: 1.8em;
+    font-size: var(--font_size_labels);
+    margin: 10px;
   }
   .progressbar-thin {
     overflow: visible;
@@ -365,7 +372,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 70px;
+    padding: var(--inner_padding);
     overflow: visible;
     max-width: min-content;
     font-weight: var(--font_bold);
@@ -380,7 +387,7 @@
     flex-direction: var(--column_reverse);
     justify-content: space-between;
     height: var(--height);
-    font-size: 1.2em;
+    font-size: var(--font_size_value);
     color: var(--label_color);
     transform-origin: top left;
   }
