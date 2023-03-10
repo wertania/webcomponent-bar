@@ -369,7 +369,7 @@
     overflow: visible;
     max-width: min-content;
     font-weight: var(--font_bold);
-    font-family: "non-serif";
+    font-family: "sans-serif";
   }
 
   .interval-label {
