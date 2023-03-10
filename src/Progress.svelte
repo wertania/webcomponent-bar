@@ -225,12 +225,12 @@
             <stop
               offset="0%"
               stop-color={bg_color}
-              stop-opacity={gradient_background ? 0 : 1}
+              stop-opacity={isTrue(gradient_background) ? 0 : 1}
             />
             <stop
               offset="50%"
               stop-color={bg_color}
-              stop-opacity={gradient_background ? 0.5 : 1}
+              stop-opacity={isTrue(gradient_background) ? 0.5 : 1}
             />
             <stop offset="51%" stop-color={bg_color} stop-opacity="1" />
             <stop offset="100%" stop-color={bg_color} stop-opacity="1" />
@@ -243,12 +243,12 @@
             <stop
               offset="0%"
               stop-color={mask_color}
-              stop-opacity={gradient_background ? mask_opacity / 200 : 1}
+              stop-opacity={isTrue(gradient_background) ? mask_opacity / 200 : 1}
             />
             <stop
               offset="50%"
               stop-color={mask_color}
-              stop-opacity={gradient_background ? mask_opacity / 100 : 1}
+              stop-opacity={isTrue(gradient_background) ? mask_opacity / 100 : 1}
             />
             <stop offset="51%" stop-color={mask_color} stop-opacity="1" />
             <stop offset="100%" stop-color={mask_color} stop-opacity="1" />
